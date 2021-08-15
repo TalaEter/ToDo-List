@@ -27,6 +27,7 @@ function newTask(){
     iDelete.className = "material-icons right close";
     iDelete.appendChild(document.createTextNode("clear"));
     iDelete.onclick = function(){
+        console.log(this);
         startTasks.splice(this,1);
         this.parentElement.style.display = "none";
         document.getElementById("start-tasks-counter").innerHTML=startTasks.length;    
@@ -37,16 +38,18 @@ function newTask(){
     iEdit.className = "material-icons right";
     iEdit.appendChild(document.createTextNode("build"));
     iEdit.onclick = function(){
-        console.log(this);
-        document.getElementById("add-item").value = this.value;
+        //console.log(this.parentElement.value); => output 0
+        let index = startTasks.find( tasks => this.value==tasks);
+        // console.log(index); => output undefined
+        document.getElementById("add-item").value = startTasks[index];
         document.getElementById("start-tasks-counter").innerHTML=startTasks.length;    
     };
     li.appendChild(iEdit);
 
     
     document.getElementById("start-list").appendChild(li);
-    document.getElementsById("add-item").value="0";
-
+    document.getElementById("add-item").value="";
+    
 }
 
 
