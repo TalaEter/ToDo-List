@@ -11,7 +11,7 @@ class toDo{
     tasks = [{text,checked,id}];
     
     constructor(){
-        this.startTasks = JSON.parse(localStorage.getItem('startTasks'));
+        startTasks = JSON.parse(localStorage.getItem('startTasks'));
         this.loadTasksList();
         startTasksCounter.innerHTML=startTasks.length;
 
@@ -27,8 +27,7 @@ class toDo{
             return input.value="Please Enter a text";
         }
 
-        console.log("add");
-        let newTask = {task, checked:false,id:1};
+        let newTask = {task, checked:false,id:startTasks.length+1};
         
         
         
@@ -36,25 +35,40 @@ class toDo{
         startTasksCounter.innerHTML=startTasks.length;
         input.value="";
         let editButton="Edit";
+        console.log("add",startTasks);
+
 
         // <li class="card task-card" id="${newTask.id}">
         //     <p style="display: inline;">${task}</p>
         //     <span onclick="toDoObj.onDeleteTask(event,${newTask.id})" id="11" class="right delete-button">Delete</span>
         //     <span onclick="toDoObj.onEditTask()" class="right">Edit</span>
         // </li>
-        let LI = `
-        <li class="card task-card" id="${newTask.id}">
-            <input type="text" value="${task}" disabled class="col s8" style="display:inline">
-            <span onclick="toDoObj.onDeleteTask(event,${newTask.id})" id="11" class="right button">Delete</span>
-            <span onclick="toDoObj.onEditTask(event)" class="right button">${editButton}</span>
-        </li>
-        `;
-        document.getElementById("start-list").innerHTML += LI;
-        localStorage.setItem("startTasks", JSON.stringify(LI))
+        // let LI = `
+        // <li class="card task-card" id="${newTask.id}">
+        //     <input type="text" value="${task}" disabled class="col s8" style="display:inline">
+        //     <span onclick="toDoObj.onDeleteTask(event,${newTask.id})" id="11" class="right button">Delete</span>
+        //     <span onclick="toDoObj.onEditTask(event,${newTask.id})" class="right button">${editButton}</span>
+        // </li>
+        // `;
+        this.loadTasksList()
+        localStorage.setItem("startTasks", JSON.stringify(startTasks))
         console.log("added");
         // startList.appendChild(element);
     }
 
+    displayTasksList(task, id) {
+        console.log(task, id);
+        return `<li class="card task-card" id="${id}">
+        <input type="text" value="${task}" disabled class="col s8" style="display:inline">
+        <span onclick="toDoObj.onDeleteTask(event,${id})" id="11" class="right button">Delete</span>
+        <span onclick="toDoObj.onEditTask(event,${id})" class="right button">Edit</span>
+    </li>`
+    }
+    loadTasksList() {
+        console.log(startTasks);
+        let taskHtml = startTasks.reduce((html, taskObj) => html += this.displayTasksList(taskObj.task, taskObj.id), '');
+        document.getElementById('start-list').innerHTML = taskHtml;
+    }
     toggleCheck(){}
 
     onDeleteTask(e,id){
@@ -67,7 +81,7 @@ class toDo{
 
     }
 
-    onEditTask(e){
+    onEditTask(e,id){
         let button = e.path[1].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nodeValue;
         
         
@@ -77,10 +91,11 @@ class toDo{
             e.path[1].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nodeValue="Submit";
         }
         else if(button==="Submit"){
-            // console.log("submit to edit");
+            console.log("submit to edit");
             
-            // let index = startTasks.findIndex(task => task.id===id);
-            // console.log(startTasks[index]);
+            let index = startTasks.findIndex(task => task.id===id);
+            startTasks[index].task=e.path[1].firstChild.nextSibling.value
+            console.log(startTasks[index]);
             
             // e.path[1].firstChild.nextSibling= `<input type="text" value="${e.path[1].firstChild.nextSibling.value}" disabled class="col s8" style="display:inline">`;
             // e.path[1].firstChild.nextSibling.disabled=true; 
@@ -88,10 +103,6 @@ class toDo{
             e.path[1].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nodeValue="Edit";   
         }
         startTasksCounter.innerHTML=startTasks.length;
-    }
-
-    loadTasksList(newTask){
-
     }
 
     
