@@ -14,42 +14,37 @@
         <div class="row">
             <h1>To Do List</h1>
             <h3 class=" ">Add Items</h3>
-            <!-- <span class="white-text ">This is a card panel with dark blue text</span> -->
             <div class="input-field inline col s8">
                 <input placeholder="Enter a new To-Do item" id="add-item" type="text" class="">
             </div>
-            <button class="btn waves-effect waves-yellow yellow darken-3 " onclick="newTask()" id="add-item-button">Add <i class="material-icons right">add</i> </button>            
+            <button class="btn waves-effect waves-yellow yellow darken-3 " onclick="toDoObj.handleOnClickAdd()" id="add-item-button">Add <i class="material-icons right">add</i> </button>            
             <br><br><br>
         </div>
     </div>
     <div class="start row">
-        <!-- <div class="yellow lighten-4 row"> -->
             <h3>Start <span id="start-tasks-counter" class="tasks-counter"></span></h3>
             <ul id="start-list" class="col s8">
 
+                <!-- <li class="card task-card">
+                    <input type="text" value="reh5etrh" disabled=0>
+                    <span onclick="toDoObj.onDeleteTask()" class="right delete-button">Delete</span>
+                    <span onclick="toDoObj.onEditTask()" class="right">Edit</span>
+                </li> -->
+
+
+
             </ul>
-            <!-- <div class="task-card">
-                <p>
-                <label>
-                        <input type="checkbox" id="task-done"/>
-                        <span id="task-description"></span>
-                </label>
-            </p>
-            </div> -->
-        <!-- </div> -->
     </div>
 
     <div class="done">
-        <!-- <div class=" yellow lighten-5 row"> -->
             <h3>Done <span id="done-tasks-counter" class="tasks-counter"></span></h3>
             <div class="task-card"></div>
-        <!-- </div> -->
     </div>
 
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="index.js"></script>
+    <script src="main.js"></script>
 </body>
 
 

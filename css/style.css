@@ -24,5 +24,21 @@ body{
 
 .task-card{
     padding: 10px ;
-    color: honeydew;
+    /* color: honeydew; */
+    background-color: #ffe57f !important;
+    height: 66px;
+}
+.task-card:hover{
+    background-color: #ffe170 !important;
+}
+.checked {
+    background-color: #fff9c4 !important;
+    /* color: hotpink; */
+    text-decoration:line-through;
+}
+
+.button{
+    padding-left: 10px;
+    padding-top: 3%;
+    cursor: pointer;
 }

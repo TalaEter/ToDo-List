@@ -2,13 +2,19 @@
 let startTasks=[];
 let doneTasks=[];
 
+
+let input = document.getElementById("add-item");
+let  startTasksCounter = document.getElementById("start-tasks-counter");
+let startList = document.getElementById("start-list");
+let doneTasksCounter = document.getElementById("done-tasks-counter");
+
 function newTask(){
-    let task = document.getElementById("add-item").value;
+    let task = input.value;
     if(task.length <= 0 || task==="Please Enter a text"){
-        return document.getElementById("add-item").value="Please Enter a text";
+        return input.value="Please Enter a text";
     }
     startTasks.push(task);
-    document.getElementById("start-tasks-counter").innerHTML=startTasks.length;
+    startTasksCounter.innerHTML=startTasks.length;
     
     let li = document.createElement("li");
     li.className = "card blue-grey darken-1 task-card";
@@ -26,40 +32,57 @@ function newTask(){
     let iDelete= document.createElement("i");
     iDelete.className = "material-icons right close";
     iDelete.appendChild(document.createTextNode("clear"));
-    iDelete.onclick = function(){
-        console.log(this);
-        startTasks.splice(this,1);
-        this.parentElement.style.display = "none";
-        document.getElementById("start-tasks-counter").innerHTML=startTasks.length;    
-    };
+    // iDelete.onclick = function(){
+    //     console.log(this);
+    //     startTasks.splice(this,1);
+    //     this.parentElement.style.display = "none";
+    //     startTasksCounter.innerHTML=startTasks.length;    
+    // };
     li.appendChild(iDelete);
 
     let iEdit= document.createElement("i");
-    iEdit.className = "material-icons right";
+    iEdit.className = "material-icons right edit";
     iEdit.appendChild(document.createTextNode("build"));
-    iEdit.onclick = function(){
-        //console.log(this.parentElement.value); => output 0
-        let index = startTasks.find( tasks => this.value==tasks);
-        // console.log(index); => output undefined
-        document.getElementById("add-item").value = startTasks[index];
-        document.getElementById("start-tasks-counter").innerHTML=startTasks.length;    
-    };
+    // iEdit.onclick = function(){
+    //     //console.log(this.parentElement.value); => output 0
+    //     let index = startTasks.find( tasks => this.parentElement.nodeValue==tasks);
+    //     console.log(index); //=> output undefined
+    //     input.value = startTasks[index];
+    //     startTasksCounter.innerHTML=startTasks.length;    
+    // };
     li.appendChild(iEdit);
 
     
-    document.getElementById("start-list").appendChild(li);
-    document.getElementById("add-item").value="";
+    startList.appendChild(li);
+    input.value="";
     
 }
 
 
-document.getElementById("start-tasks-counter").innerHTML=startTasks.length;
-document.getElementById("done-tasks-counter").innerHTML=doneTasks.length;
+
+startList.addEventListener('click', e => {
+    if(e.target.tagName == 'LI') { e.target.classList.toggle('checked'); input.value = e.target.innerHTML;}
+    else if(e.target.tagName=='I' && e.target.className=="material-icons right close"){
+        // this.parentElement.style.display = "none";
+        // e.target.style.display="none";
+        console.log(e.target.nodeValue);
+        // e.target.display('none');
+        startTasks.splice(e.target,1);
+        startTasksCounter.innerHTML=startTasks.length;
+    }
+    else if(e.target.tagName=='I' && e.target.className=="material-icons right edit")console.log('edit ' + e.target.innerHTML);
+
+});
+
+
+
+$(this).parent().text()
+
 
 function deleteTask(){
     // this.parentElement.style.display = "none";
     startTasks.find( startTasks => startTasks.splice(task,1));
-    document.getElementById("start-tasks-counter").innerHTML=startTasks.length;
+    startTasksCounter.innerHTML=startTasks.length;
 }
 
 function editTask(){
