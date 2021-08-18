@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+body{
+    background-color: #fffde7 ;
+}
+.login{
+    /* align-self: center !important; */
+    margin: 20% 25% !important;
+    border-radius: 15px !important;
+    max-height: 500px;
+    max-width: 400px;
+    height: 50% !important;
+    width: 50% !important;
+    padding: 1% 0 1% 2%;
+}
+.login-title{
+    margin-left: 27%;
+}
+.login-btn{
+    margin-left: 12%;
+    margin-top: 10px ;
+}
+.signup-btn{
+    margin-top: 10px;
+    color: #f9a825 !important;
+    /* border: #f9a825 1px solid !important; */
+}
+.helper-text{
+    color: rgb(202, 117, 117) !important;
+}
