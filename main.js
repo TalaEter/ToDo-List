@@ -11,12 +11,20 @@ class toDo{
     tasks = [{text,checked,id}];
     
     constructor(){
-        startTasks = JSON.parse(localStorage.getItem('startTasks')) || [];
-        if(startTasks!==null){
-        this.loadTasksList();
-        startTasksCounter.innerHTML=startTasks.length;
-        }
-        startTasksCounter.innerHTML=0;
+        fetch('https://jsonplaceholder.typicode.com/todos')
+            .then(startTasks => startTasks.json())
+            .then(json => startTasks=json)
+            .then( setTimeout(()=>{this.loadTasksList()},3000))
+            .then(startTasksCounter.innerHTML=startTasks.length)
+            ;
+        console.log("fetching",startTasks);
+        
+        //startTasks = JSON.parse(localStorage.getItem('startTasks')) || [];
+        //if(startTasks!==null){
+        // this.loadTasksList();
+        // startTasksCounter.innerHTML=startTasks.length;
+        //}
+        //startTasksCounter.innerHTML=0;
 
 
     }
@@ -61,7 +69,7 @@ class toDo{
     }
 
     displayTasksList(task, id) {
-        console.log(task, id);
+        // console.log(task, id);
         return `<li class="card task-card" id="${id}">
         <input type="text" value="${task}" disabled class="col s8" style="display:inline">
         <span onclick="toDoObj.onDeleteTask(event,${id})" id="11" class="right button">Delete</span>
@@ -69,8 +77,9 @@ class toDo{
     </li>`
     }
     loadTasksList() {
-        console.log(startTasks);
-        let taskHtml = startTasks.reduce((html, taskObj) => html += this.displayTasksList(taskObj.task, taskObj.id), '');
+        //console.log(startTasks);
+        console.log("load tasks list");
+        let taskHtml = startTasks.reduce((html, taskObj) => html += this.displayTasksList(taskObj.title, taskObj.id), '');
         document.getElementById('start-list').innerHTML = taskHtml;
     }
     toggleCheck(){}
@@ -102,7 +111,7 @@ class toDo{
             console.log(startTasks[index]);
             
             // e.path[1].firstChild.nextSibling= `<input type="text" value="${e.path[1].firstChild.nextSibling.value}" disabled class="col s8" style="display:inline">`;
-            // e.path[1].firstChild.nextSibling.disabled=true; 
+            e.path[1].firstChild.nextSibling.disabled=true; 
             console.log(e.path[1].firstChild);
             e.path[1].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nodeValue="Edit";   
         }
