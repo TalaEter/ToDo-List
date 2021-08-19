@@ -24,7 +24,6 @@ body{
 
 .task-card{
     padding: 10px ;
-    /* color: honeydew; */
     background-color: #ffe57f !important;
     height: 66px;
 }
@@ -33,7 +32,6 @@ body{
 }
 .checked {
     background-color: #fff9c4 !important;
-    /* color: hotpink; */
     text-decoration:line-through;
 }
 

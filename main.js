@@ -15,23 +15,11 @@ class toDo{
             .then(startTasks => startTasks.json())
             .then(json => startTasks=json)
             .then( setTimeout(()=>{this.loadTasksList();startTasksCounter.innerHTML=startTasks.length;},3000))
-            // .then(startTasksCounter.innerHTML=startTasks.length)
             ;
-        console.log("fetching",startTasks.length);
+        // console.log("fetching",startTasks.length);
         
-        //startTasks = JSON.parse(localStorage.getItem('startTasks')) || [];
-        //if(startTasks!==null){
-        // this.loadTasksList();
-        // startTasksCounter.innerHTML=startTasks.length;
-        //}
-        //startTasksCounter.innerHTML=0;
-
-
     }
     
-    addNewTask(){ //to add to array , without display
-            
-    }
 
     handleOnClickAdd(){ //to display -> inner call for addNewTask
         let  task=input.value;
@@ -47,29 +35,14 @@ class toDo{
         startTasksCounter.innerHTML=startTasks.length;
         input.value="";
         let editButton="Edit";
-        console.log("add",startTasks);
+        // console.log("add",startTasks);
 
-
-        // <li class="card task-card" id="${newTask.id}">
-        //     <p style="display: inline;">${task}</p>
-        //     <span onclick="toDoObj.onDeleteTask(event,${newTask.id})" id="11" class="right delete-button">Delete</span>
-        //     <span onclick="toDoObj.onEditTask()" class="right">Edit</span>
-        // </li>
-        // let LI = `
-        // <li class="card task-card" id="${newTask.id}">
-        //     <input type="text" value="${task}" disabled class="col s8" style="display:inline">
-        //     <span onclick="toDoObj.onDeleteTask(event,${newTask.id})" id="11" class="right button">Delete</span>
-        //     <span onclick="toDoObj.onEditTask(event,${newTask.id})" class="right button">${editButton}</span>
-        // </li>
-        // `;
         this.loadTasksList()
         localStorage.setItem("startTasks", JSON.stringify(startTasks))
-        console.log("added");
-        // startList.appendChild(element);
+        // console.log("added");
     }
 
     displayTasksList(task, id) {
-        // console.log(task, id);
         return `<li class="card task-card" draggable="true" ondragstart="toDoObj.drag(event)" id="${id}">
         <input type="text" value="${task}" disabled class="col s8" style="display:inline">
         <span onclick="toDoObj.onDeleteTask(event,${id})" id="11" class="right button">Delete</span>
@@ -77,16 +50,15 @@ class toDo{
     </li>`
     }
     loadTasksList() {
-        //console.log(startTasks);
-        console.log("load tasks list");
+        // console.log("load tasks list");
         let taskHtml = startTasks.reduce((html, taskObj) => html += this.displayTasksList(taskObj.title, taskObj.id), '');
         document.getElementById('start-list').innerHTML = taskHtml;
     }
     toggleCheck(){}
 
     onDeleteTask(e,id){
-        console.log("delete");
-        console.log(e.path[1]);
+        // console.log("delete");
+        // console.log(e.path[1]);
         e.path[1].style.display="none";
         let index = startTasks.findIndex(task => task.id===id);
         startTasks.splice(index, 1);
@@ -104,15 +76,14 @@ class toDo{
             e.path[1].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nodeValue="Submit";
         }
         else if(button==="Submit"){
-            console.log("submit to edit");
+            // console.log("submit to edit");
             
             let index = startTasks.findIndex(task => task.id===id);
             startTasks[index].task=e.path[1].firstChild.nextSibling.value
-            console.log(startTasks[index]);
+            // console.log(startTasks[index]);
             
-            // e.path[1].firstChild.nextSibling= `<input type="text" value="${e.path[1].firstChild.nextSibling.value}" disabled class="col s8" style="display:inline">`;
             e.path[1].firstChild.nextSibling.disabled=true; 
-            console.log(e.path[1].firstChild);
+            // console.log(e.path[1].firstChild);
             e.path[1].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nodeValue="Edit";   
         }
         startTasksCounter.innerHTML=startTasks.length;
@@ -121,13 +92,12 @@ class toDo{
     drag(e){
         e.dataTransfer.setData("LI",e.target.id);
         e.target.style.backgroundColor = `#fff !important`;
-        console.log(e.target.style);
+        // console.log(e.target.style);
     }
     drop(e){
         e.preventDefault();
         let data=e.dataTransfer.getData("LI");
         e.target.appendChild(document.getElementById(data));
-        // e.target.style.fontSize = `50px`;
 
     }
     allowDrop(e){

@@ -7,7 +7,6 @@ body{
     background-color: #fffde7 ;
 }
 .login{
-    /* align-self: center !important; */
     margin: 20vh calc(20vw + 10%) !important;
     border-radius: 15px !important;
     max-height: 500px;
@@ -27,7 +26,6 @@ body{
 .signup-btn{
     margin-top: 10px;
     color: #f9a825 !important;
-    /* border: #f9a825 1px solid !important; */
 }
 .helper-text{
     color: rgb(202, 117, 117) !important;

@@ -7,7 +7,6 @@ body{
     background-color: #fffde7 ;
 }
 .signup{
-    /* align-self: center !important; */
     margin: 20% 25% !important;    
     margin: 20vh calc(20vw + 10%) !important;
     margin-left: calc(25vw + 10%) !important;
@@ -29,7 +28,6 @@ body{
 .login-btn{
     margin-top: 10px;
     color: #f9a825 !important;
-    /* border: #f9a825 1px solid !important; */
 }
 .helper-text{
     color: rgb(202, 117, 117) !important;

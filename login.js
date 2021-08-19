@@ -16,19 +16,19 @@ class login{
     loginClick(){
         usernameHelper.style.visibility="hidden";
         passwordHelper.style.visibility="hidden";
-        console.log(username.value);
+        // console.log(username.value);
         let index = users.find( ({user}) => user==username.value);
-        console.log(index);
+        // console.log(index);
         if(index === undefined){
             usernameHelper.style.visibility="visible";
         }
         
         else if(index.pass!= password.value){
-            console.log(index.pass ,password.value);
+            // console.log(index.pass ,password.value);
             passwordHelper.style.visibility='visible';
         }
         else {
-            console.log("all is good")
+            // console.log("all is good")
             window.location.href = "./index.html";
         };
 
