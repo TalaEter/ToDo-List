@@ -14,10 +14,10 @@ class toDo{
         fetch('https://jsonplaceholder.typicode.com/todos')
             .then(startTasks => startTasks.json())
             .then(json => startTasks=json)
-            .then( setTimeout(()=>{this.loadTasksList()},3000))
-            .then(startTasksCounter.innerHTML=startTasks.length)
+            .then( setTimeout(()=>{this.loadTasksList();startTasksCounter.innerHTML=startTasks.length;},3000))
+            // .then(startTasksCounter.innerHTML=startTasks.length)
             ;
-        console.log("fetching",startTasks);
+        console.log("fetching",startTasks.length);
         
         //startTasks = JSON.parse(localStorage.getItem('startTasks')) || [];
         //if(startTasks!==null){
@@ -70,7 +70,7 @@ class toDo{
 
     displayTasksList(task, id) {
         // console.log(task, id);
-        return `<li class="card task-card" id="${id}">
+        return `<li class="card task-card" draggable="true" ondragstart="toDoObj.drag(event)" id="${id}">
         <input type="text" value="${task}" disabled class="col s8" style="display:inline">
         <span onclick="toDoObj.onDeleteTask(event,${id})" id="11" class="right button">Delete</span>
         <span onclick="toDoObj.onEditTask(event,${id})" class="right button">Edit</span>
@@ -116,6 +116,22 @@ class toDo{
             e.path[1].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nodeValue="Edit";   
         }
         startTasksCounter.innerHTML=startTasks.length;
+    }
+
+    drag(e){
+        e.dataTransfer.setData("LI",e.target.id);
+        e.target.style.backgroundColor = `#fff !important`;
+        console.log(e.target.style);
+    }
+    drop(e){
+        e.preventDefault();
+        let data=e.dataTransfer.getData("LI");
+        e.target.appendChild(document.getElementById(data));
+        // e.target.style.fontSize = `50px`;
+
+    }
+    allowDrop(e){
+        e.preventDefault();
     }
 
     

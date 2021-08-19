@@ -23,7 +23,7 @@
     </div>
     <div class="start row">
             <h3>Start <span id="start-tasks-counter" class="tasks-counter"></span></h3>
-            <ul id="start-list" class="col s8">
+            <ul id="start-list" class="col s8" ondrop="toDoObj.drop(event)" ondragover="toDoObj.allowDrop(event)" >
 
                 <!-- <li class="card task-card">
                     <input type="text" value="reh5etrh" disabled=0>
@@ -36,9 +36,22 @@
             </ul>
     </div>
 
-    <div class="done">
+    <div class="done row">
             <h3>Done <span id="done-tasks-counter" class="tasks-counter"></span></h3>
-            <div class="task-card"></div>
+            <!-- <div class="task-card"> -->
+                <ul id="start-list" class="col s8" ondrop="toDoObj.drop(event)" ondragover="toDoObj.allowDrop(event)" >
+
+                    <!-- <li class="card task-card">
+                        <input type="text" value="reh5etrh" disabled=0>
+                        <span onclick="toDoObj.onDeleteTask()" class="right delete-button">Delete</span>
+                        <span onclick="toDoObj.onEditTask()" class="right">Edit</span>
+                    </li> -->
+    
+    
+    
+                </ul>
+    
+            <!-- </div> -->
     </div>
 
 

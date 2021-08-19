@@ -28,7 +28,7 @@ body{
     background-color: #ffe57f !important;
     height: 66px;
 }
-.task-card:hover{
+.start .task-card:hover{
     background-color: #ffe170 !important;
 }
 .checked {
@@ -41,4 +41,15 @@ body{
     padding-left: 10px;
     padding-top: 3%;
     cursor: pointer;
+}
+.done{
+    min-height: 500px;
+}
+.done ul{
+    min-height: 500px !important;
+}
+.done li{
+    background-color: #f9f6cb !important;
+    color: lightgrey;
+    text-decoration:line-through !important;
 }
