@@ -8,13 +8,14 @@ body{
 }
 .login{
     /* align-self: center !important; */
-    margin: 20% 25% !important;
+    margin: 20vh calc(20vw + 10%) !important;
     border-radius: 15px !important;
     max-height: 500px;
     max-width: 400px;
     height: 50% !important;
     width: 50% !important;
     padding: 1% 0 1% 2%;
+    margin-left: calc(25vw + 10%) !important;
 }
 .login-title{
     margin-left: 27%;

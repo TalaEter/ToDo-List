@@ -8,7 +8,10 @@ body{
 }
 .signup{
     /* align-self: center !important; */
-    margin: 20% 25% !important;
+    margin: 20% 25% !important;    
+    margin: 20vh calc(20vw + 10%) !important;
+    margin-left: calc(25vw + 10%) !important;
+
     border-radius: 15px !important;
     max-height: 500px;
     max-width: 400px;

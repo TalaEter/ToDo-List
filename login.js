@@ -2,13 +2,13 @@ let username = document.getElementById("username");
 let password = document.getElementById("password");
 let passwordHelper= document.getElementById("password-helper");
 let usernameHelper= document.getElementById("username-helper");
-let users = [[1,5]];
+let users = [];
 let pass,user;
 
 class login{
 
     constructor(){
-        this.users = JSON.parse(localStorage.getItem('users'));
+        users = JSON.parse(localStorage.getItem('users'));
         usernameHelper.style.visibility="hidden";
         passwordHelper.style.visibility="hidden";
     }
@@ -17,14 +17,14 @@ class login{
         usernameHelper.style.visibility="hidden";
         passwordHelper.style.visibility="hidden";
         console.log(username.value);
-        let index = users.find( user => user[0]==username.value);
+        let index = users.find( ({user}) => user==username.value);
         console.log(index);
         if(index === undefined){
             usernameHelper.style.visibility="visible";
         }
         
-        else if(index[1]!= password.value){
-            console.log(index[1],password.value);
+        else if(index.pass!= password.value){
+            console.log(index.pass ,password.value);
             passwordHelper.style.visibility='visible';
         }
         else {

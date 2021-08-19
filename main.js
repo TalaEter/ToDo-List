@@ -11,9 +11,13 @@ class toDo{
     tasks = [{text,checked,id}];
     
     constructor(){
-        startTasks = JSON.parse(localStorage.getItem('startTasks'));
+        startTasks = JSON.parse(localStorage.getItem('startTasks')) || [];
+        if(startTasks!==null){
         this.loadTasksList();
         startTasksCounter.innerHTML=startTasks.length;
+        }
+        startTasksCounter.innerHTML=0;
+
 
     }
     
